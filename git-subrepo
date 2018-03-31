@@ -731,6 +731,11 @@ init_config()
     (
     cd $root
 
+    if [ -f .gitsubrepo ]; then
+        echo ".gitsubrepo already exists"
+        return 0
+    fi
+
     cat >.gitsubrepo <<-END
 	[ remote_suffix: .git ]
 	[ remote: https://github.com/ ]
@@ -738,8 +743,8 @@ init_config()
 	[ base: ]
 	git-subrepo      baishancloud/git-subrepo       master   git-subrepo
 
-	[ base: utils/logdiff ]
-	pykit            baishancloud/pykit                  master
+	[ base: deps ]
+	pykit            baishancloud/pykit             master
 
 
 	# git-subrepo
